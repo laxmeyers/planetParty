@@ -9,9 +9,8 @@ class PlanetsService{
 
     async getPlanetsByGalaxyId(galaxyId) {
         const galaxyPlanets = await dbContext.Planets.find({ galaxyId })
-        if (!galaxyId) {
-            throw new BadRequest('Bad galaxy ID' + galaxyId)
-        }
+        .populate('galaxy', 'name')
+        
         return galaxyPlanets
     }
 
